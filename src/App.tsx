@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Index from './pages/Index/index';
+import { COMPILATION_TO } from './config/envs/app.env';
+import AppPage from './pages/App/index';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const routes = 
+  <>  
+    <Routes>    
+      {
+        [
+          <Route path="/" element={<Index />} />,
+          <Route path="/app" element={<AppPage></AppPage>} />,
+          <Route path="*" element={<Navigate to="/" replace={true} />}  />
+        ] 
+      }
+    </Routes>
+  </>
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <>{
+      COMPILATION_TO === 'ELECTRON' ? 
+        <HashRouter>
+          {routes}
+        </HashRouter>
+        :
+        <AppPage></AppPage>
+        /*<BrowserRouter>
+          {routes}
+        </BrowserRouter>*/
+    }</>
+  );
 }
 
-export default App
+export default function AppSB () {
+  return (
+    <App />
+  )
+}

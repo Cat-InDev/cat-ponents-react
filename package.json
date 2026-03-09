@@ -5,25 +5,78 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "npm run dev",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "electron:config": "node scripts/electron/config.js",
+    "electron:serve": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm run electron:start\"",
+    "electron:build": "rimraf build && npm run build && copy .\\scripts\\electron\\files\\main.js dist\\ && copy .\\scripts\\electron\\files\\preload.js dist\\ && electron-builder -c.extraMetadata.main=dist/main.js",
+    "electron:start": "wait-on tcp:5173 && npm run electron",
+    "electron": "electron ."
   },
   "dependencies": {
+    "@catindev/cat-ponents-react": "file:../../react-libs/cat-ponents-react",
+    "auto-launch": "^5.0.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "copy": "^0.3.2",
+    "cross-env": "^7.0.3",
+    "electron": "^35.1.5",
+    "electron-builder": "^26.0.12",
+    "electron-is-dev": "^3.0.1",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "wait-on": "^8.0.3"
+  },
+  "main": "dist/main.js",
+  "homepage": ".",
+  "build": {
+    "extends": null,
+    "appId": "com.example.electron-cra",
+    "extraMetadata": {
+      "main": "dist/main.js"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "dist/assets",
+      "output": "build"
+    },
+    "win": {
+      "icon": "public/logo512.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
