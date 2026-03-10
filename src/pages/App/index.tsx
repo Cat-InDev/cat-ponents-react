@@ -1,4 +1,4 @@
-import { AppBuilder, CustomFormFieldTypes } from '@catindev/cat-ponents-react'
+import { AppBuilder, CustomFormFieldTypes } from '@cat.in.dev/cat-ponents-react'
 import { ENVS } from '../../config/envs/app.env';
 import IndexPage from '../Index';
 

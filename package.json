@@ -16,7 +16,7 @@
     "electron": "electron ."
   },
   "dependencies": {
-    "@catindev/cat-ponents-react": "file:../../react-libs/cat-ponents-react",
+    "@cat.in.dev/cat-ponents-react": "^0.0.1-alpha-1",
     "auto-launch": "^5.0.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

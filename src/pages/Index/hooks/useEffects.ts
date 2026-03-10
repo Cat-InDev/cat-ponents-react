@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { EffectHooksProps } from '@catindev/cat-ponents-react';
+import { EffectHooksProps } from '@cat.in.dev/cat-ponents-react';
 import { UseIndexStates } from './useStates';
 import { UseIndexActions } from './useActions';
 

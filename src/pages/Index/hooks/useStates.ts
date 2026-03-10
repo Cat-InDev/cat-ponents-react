@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StateHooksProps } from "@catindev/cat-ponents-react";
+import { StateHooksProps } from "@cat.in.dev/cat-ponents-react";
 
 export const useIndex = (hookProps: StateHooksProps) => {
     hookProps;
