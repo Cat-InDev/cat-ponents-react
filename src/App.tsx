@@ -27,9 +27,6 @@ function App() {
         </HashRouter>
         :
         <AppPage></AppPage>
-        /*<BrowserRouter>
-          {routes}
-        </BrowserRouter>*/
     }</>
   );
 }

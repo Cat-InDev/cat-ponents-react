@@ -1,4 +1,4 @@
-import { NavBar, Modal, Table, Form, CustomFormFieldTypes, Footer } from '@catindev/cat-ponents-react'
+import { NavBar, Modal, Table, Form, CustomFormFieldTypes, Footer } from '@cat.in.dev/cat-ponents-react'
 
 const IndexPage = () => {
 
@@ -228,6 +228,7 @@ const IndexPage = () => {
             <Form 
                 config={{
                     title: 'Form Title',
+                    id: "index-example-form",
                     components: [
                         { 
                             fields: [
@@ -247,7 +248,7 @@ const IndexPage = () => {
                                                 }
                                             }
                                         ]
-                                    } 
+                                    } as any 
                                 } 
                             ], 
                             type: 'col',
@@ -291,7 +292,7 @@ const IndexPage = () => {
                                             }
                                         ]
                                     } 
-                                } 
+                                } as any 
                             ], 
                             size: 6,
                             type: 'col'
@@ -340,7 +341,7 @@ const IndexPage = () => {
                                         type: 'color',
                                         validator: [],
                                         size: 1
-                                    } 
+                                    } as any 
                                 } 
                             ], 
                             size: 8,
@@ -389,7 +390,7 @@ const IndexPage = () => {
                                             min: "tomorrow",
                                             max: "2025-12-31"
                                         }
-                                    } 
+                                    } as any
                                 } 
                             ], 
                             size: 12,
@@ -433,7 +434,7 @@ const IndexPage = () => {
                                             { value: 'opcion6', color: "#009688", icon: "ArrowDropDownCircle" },
                                         ],
                                         selection: 'single'
-                                    } 
+                                    } as any
                                 }
                             ], 
                             size: 12,
@@ -460,7 +461,7 @@ const IndexPage = () => {
                                             { label: 'Opción 6', value: 'opcion6', color: "#009688", icon: "ArrowDropDownCircle" }
                                         ],
                                         selection: 'single'
-                                    } 
+                                    } as any
                                 }
                             ], 
                             size: 12,
@@ -559,7 +560,7 @@ const IndexPage = () => {
                                             { value: 'opcion6', color: "#009688", icon: "ArrowDropDownCircle" },
                                             { value: 'opcion7', color: "#009688", icon: "ArrowDropDownCircle" }
                                         ]
-                                    } 
+                                    } as any
                                 }
                             ], 
                             size: 12,
@@ -634,7 +635,7 @@ const IndexPage = () => {
                                             max: 100
                                         },                                        
                                         type: 'range'                                        
-                                    } 
+                                    } as any
                                 }
                             ], 
                             size: 12,
@@ -794,6 +795,7 @@ const IndexPage = () => {
                                     type: 'crud' as CustomFormFieldTypes.Crud, 
                                     config: { 
                                         formConfig: {
+                                            id: "",
                                             title: 'Crud Form',
                                             components: [
                                                 { 
@@ -911,7 +913,7 @@ const IndexPage = () => {
                                                                 size: 2,                                                                
                                                                 selection: 'multiple',
                                                                 editable: false
-                                                            } 
+                                                            } as any
                                                         },
                                                         { 
                                                             type: 'data' as CustomFormFieldTypes.Data,                                                            
@@ -934,7 +936,7 @@ const IndexPage = () => {
                                                                     min: "14:00",
                                                                     max: "16:00"
                                                                 }
-                                                            } 
+                                                            } as any
                                                         },
                                                         { 
                                                             type: 'data' as CustomFormFieldTypes.Data, 
@@ -978,7 +980,7 @@ const IndexPage = () => {
                                                                 ],                               
                                                                 type: 'slider',
                                                                 editable: false                                   
-                                                            } 
+                                                            }  as any
                                                         },
                                                         { 
                                                             type: CustomFormFieldTypes.Data, 
@@ -1002,7 +1004,7 @@ const IndexPage = () => {
                                                                     max: 0
                                                                 },
                                                                 size: 3         
-                                                            },                                                            
+                                                            } as any,                                                            
                                                             conditionalRender: {
                                                                 action: ({
                                                                     __$params
@@ -1117,7 +1119,6 @@ const IndexPage = () => {
             />
 
             <Table
-                title="Table Title"
                 setFilterURIParams={true}
                 visualization='cards'   
                 id="table-1"

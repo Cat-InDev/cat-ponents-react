@@ -16,14 +16,16 @@
     "electron": "electron ."
   },
   "dependencies": {
-    "@cat.in.dev/cat-ponents-react": "^0.0.1-alpha-1",
+    "@cat.in.dev/cat-ponents-react": "file:../../react-libs/cat-ponents-react",
     "auto-launch": "^5.0.6",
+    "lodash": "^4.18.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/lodash": "^4.17.24",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",

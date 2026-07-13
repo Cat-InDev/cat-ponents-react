@@ -1,6 +1,10 @@
 import { AppBuilder, CustomFormFieldTypes } from '@cat.in.dev/cat-ponents-react'
 import { ENVS } from '../../config/envs/app.env';
 import IndexPage from '../Index';
+import { RenderLoginPage } from '../Login/Login';
+import { RenderSignupPage } from '../Signup/Signup';
+import { getConfigToRenderPageCommon } from '../../components/NavVarSession';
+import { RenderBrandsPage } from '../Brands';
 
 const Index = () => {
 
@@ -9,7 +13,7 @@ const Index = () => {
             <AppBuilder
                 config={{
                     theme: "kittens_elegant",
-                    home:"/dashboard/manual",
+                    home:"/",
                     envs:ENVS,
                     auth:{
                         path: "auth",
@@ -30,282 +34,110 @@ const Index = () => {
                         },
                         logInConfig: {
                             path: "login",
-                            pageConfig: {
-                                dev: false,
-                                columns: 50,
-                                type: "matrix",                                    
-                                unitaryCellH: 30,
-                                unitaryCellW: 75,
-                                strictScreen: true,
-                                rows: 30,
-                                matrix: {
-                                    5: {
-                                        15: {
-                                            endColumn: 32,
-                                            endRow: 18,
-                                            id: "card-1",
-                                            componentType: 'FORM',
-                                            params: { 
-                                                config: {
-                                                    title: "Login",                    
-                                                    components: [{
-                                                        fields: [
-                                                            {
-                                                                type: CustomFormFieldTypes.Data,
-                                                                config: {
-                                                                    disposition: "row",
-                                                                    type: "email",
-                                                                    label: "Email",
-                                                                    prop: "email",
-                                                                    validator: [
-                                                                        {
-                                                                            $regex: {
-                                                                                validate: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
-                                                                                message: "Formato de correo inválido"
-                                                                            },
-                                                                        },
-                                                                        {
-                                                                            $emptyValue: {
-                                                                                message: "*",
-                                                                                validate: null
-                                                                            }
-                                                                        }
-                                                                    ],
-                                                                    notNull: true,
-                                                                    size: 4
-                                                                }
-                                                            },
-                                                            {
-                                                                type: CustomFormFieldTypes.Data,
-                                                                config: {
-                                                                    disposition: "row",
-                                                                    type: "password",
-                                                                    label: "Password",
-                                                                    prop: "password",
-                                                                    validator: [
-                                                                        {
-                                                                            $regex: {
-                                                                                validate: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&._\\-])[A-Za-z\\d@$!%*?&._\\-]{8,}$",
-                                                                                message: "Debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una letra minúscula, un número y un símbolo especial (como @, $, !, %, , ?, &, ., _, o -)."
-                                                                            },
-                                                                        },
-                                                                        {
-                                                                            $emptyValue: {
-                                                                                message: "*",
-                                                                                validate: null
-                                                                            }
-                                                                        }
-                                                                    ],
-                                                                    notNull: true,
-                                                                    size: 4
-                                                                }
-                                                            },
-                                                            {
-                                                                type: CustomFormFieldTypes.SubmintButton,
-                                                                config: {
-                                                                    disposition: "row",
-                                                                    action: {
-                                                                        callback: {
-                                                                            action: {
-                                                                                name: "do-login-auth",
-                                                                                taskConfig: {
-                                                                                    eventName: "do-login-auth-event",
-                                                                                    eventParams: {
-                                                                                        password: { $get: { key: "$._$data_.__$params.data.password" } },
-                                                                                        username: { $get: { key: "$._$data_.__$params.data.email" } }
-                                                                                    }
-                                                                                },
-                                                                                taskName: "$dispatchEvent"
-                                                                            }
-                                                                        }
-                                                                    },
-                                                                    title: "Login",
-                                                                    color: {
-                                                                        code: "#6495ED",
-                                                                        hoverCode: "#483D8B"
-                                                                    },
-                                                                    size: 4,
-                                                                    variant: "outlined"
-                                                                }
-                                                            },
-                                                            {
-                                                                type: CustomFormFieldTypes.Button,
-                                                                config: {
-                                                                    disposition: "row",
-                                                                    action: {
-                                                                        callback: {
-                                                                            action: {
-                                                                                name: "toSignup",
-                                                                                taskConfig: {
-                                                                                    eventName: "to-auth-signup",
-                                                                                    eventParams: {}
-                                                                                },
-                                                                                taskName: "$dispatchEvent"
-                                                                            }
-                                                                        }
-                                                                    },
-                                                                    title: "To Sign Up",
-                                                                    color: {
-                                                                        code: "#6495ED",
-                                                                        hoverCode: "#7169a0ff"
-                                                                    },
-                                                                    size: 4,
-                                                                    variant: "outlined"
-                                                                }
-                                                            }
-                                                        ],
-                                                        type: "row",
-                                                        size: 12
-                                                    }]
-                                                },     
-                                                formData: {},
-                                                setFormData: (props: any) => console.log(props)
-                                            },
-                                        }
-                                    },
-                                }
-                            }
+                            pageConfig: RenderLoginPage() as any
                         },
                         signUpConfig: {
                             path: "register",
-                            pageConfig: {
-                                dev: false,
-                                columns: 50,
-                                type: "matrix",                                    
-                                unitaryCellH: 30,
-                                unitaryCellW: 75,
-                                strictScreen: true,
-                                rows: 30,
-                                matrix: {
-                                    5: {
-                                        15: {
-                                            endColumn: 32,
-                                            endRow: 18,
-                                            id: "card-1",
-                                            componentType: 'FORM',
-                                            params: {
-                                                config: {
-                                                    title: "Sign Up",                    
-                                                    components: [{
-                                                        fields: [
-                                                            {
-                                                                type: CustomFormFieldTypes.Data,
-                                                                config: {
-                                                                    disposition: "row",
-                                                                    type: "email",
-                                                                    label: "Email",
-                                                                    prop: "email",
-                                                                    validator: [
-                                                                        {
-                                                                            $regex: {
-                                                                                validate: "^[^\s@]+@[^\s@]+\.[^\s@]+$",
-                                                                                message: "Formato de correo inválido"
-                                                                            },
-                                                                        },
-                                                                        {
-                                                                            $emptyValue: {
-                                                                                message: "*",
-                                                                                validate: null
-                                                                            }
-                                                                        }
-                                                                    ],
-                                                                    notNull: true,
-                                                                    size: 4
-                                                                }
-                                                            },
-                                                            {
-                                                                type: CustomFormFieldTypes.Data,
-                                                                config: {
-                                                                    disposition: "row",
-                                                                    type: "password",
-                                                                    label: "Password",
-                                                                    prop: "password",
-                                                                    validator: [
-                                                                        {
-                                                                            $regex: {
-                                                                                validate: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._\-])[A-Za-z\d@$!%*?&._\-]{8,}$",
-                                                                                message: "Debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una letra minúscula, un número y un símbolo especial (como @, $, !, %, , ?, &, ., _, o -)."
-                                                                            },
-                                                                        },
-                                                                        {
-                                                                            $emptyValue: {
-                                                                                message: "*",
-                                                                                validate: null
-                                                                            }
-                                                                        }
-                                                                    ],
-                                                                    notNull: true,
-                                                                    size: 4
-                                                                }
-                                                            },
-                                                            {
-                                                                type: CustomFormFieldTypes.SubmintButton,
-                                                                config: {
-                                                                    disposition: "row",
-                                                                    action: {
-                                                                        callback: {
-                                                                            action: {
-                                                                                name: "do-signup-auth",
-                                                                                taskConfig: {
-                                                                                    eventName: "do-signup-auth-event",
-                                                                                    eventParams: {
-                                                                                        password: { $get: { key: "$._$data_.__$params.data.password" } },
-                                                                                        username: { $get: { key: "$._$data_.__$params.data.email" } }
-                                                                                    }
-                                                                                },
-                                                                                taskName: "$dispatchEvent"
-                                                                            }
-                                                                        }
-                                                                    },
-                                                                    title: "Signup",
-                                                                    color: {
-                                                                        code: "#6495ED",
-                                                                        hoverCode: "#483D8B"
-                                                                    },
-                                                                    size: 4,
-                                                                    variant: "outlined"
-                                                                }
-                                                            },
-                                                            {
-                                                                type: CustomFormFieldTypes.Button,
-                                                                config: {
-                                                                    disposition: "row",
-                                                                    action: {
-                                                                        callback: {
-                                                                            action: {
-                                                                                name: "toLogin",
-                                                                                taskConfig: {
-                                                                                    eventName: "to-auth-login",
-                                                                                    eventParams: {}
-                                                                                },
-                                                                                taskName: "$dispatchEvent"
-                                                                            }
-                                                                        }
-                                                                    },
-                                                                    title: "Login",
-                                                                    color: {
-                                                                        code: "#6495ED",
-                                                                        hoverCode: "#483D8B"
-                                                                    },
-                                                                    size: 4,
-                                                                    variant: "outlined"
-                                                                }
-                                                            }
-                                                        ],
-                                                        type: "row",
-                                                        size: 12
-                                                    }]
-                                                },               
-                                                formData: {},
-                                                setFormData: (props: any) => console.log(props)
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                            pageConfig: RenderSignupPage() as any
                         }
                     },
                     pages: [
+                        {
+                            path: "/",
+                            public: false,
+                            config: {
+                                getConfig: getConfigToRenderPageCommon,
+                                type: "matrix",
+                                dev: false,
+                                columns: 100,
+                                unitaryCellH: 30,
+                                unitaryCellW: 75,
+                                strictScreen: true,
+                                rows: 100,
+                                matrix: {
+                                    "{0}": {
+                                        "{0}": {
+                                            componentType: "NAVBAR",
+                                            endColumn: 49,
+                                            endRow: 1,
+                                            id: "navbar",
+                                            params: {}
+                                        }
+                                    },
+                                    "{3}": {
+                                        "{10}": {
+                                            componentType: "CHART",
+                                            endColumn: 25,
+                                            endRow: 8,
+                                            id: "users-metric",
+                                            params: {
+                                                config: {
+                                                    variant: "metric",
+                                                    title: "Users",
+                                                    value: 15,
+                                                    width: 50,
+                                                    height: 150,
+                                                    sparklineData: [0, 5, 20, 100, 80]
+                                                }
+                                            }
+                                        },
+                                        "{30}": {
+                                            componentType: "CHART",
+                                            endColumn: 45,
+                                            endRow: 8,
+                                            id: "users-metric",
+                                            params: {
+                                                config: {
+                                                    variant: "metric",
+                                                    title: "Users",
+                                                    value: 15,
+                                                    width: 200,
+                                                    height: 150,
+                                                    sparklineData: [0, 5, 20, 100, 80]
+                                                }
+                                            }
+                                        },
+                                        "{50}": {
+                                            componentType: "CHART",
+                                            endColumn: 65,
+                                            endRow: 8,
+                                            id: "users-metric",
+                                            params: {
+                                                config: {
+                                                    variant: "metric",
+                                                    title: "Users",
+                                                    value: 15,
+                                                    width: 200,
+                                                    height: 150,
+                                                    sparklineData: [0, 5, 20, 100, 80]
+                                                }
+                                            }
+                                        },
+                                        "{70}": {
+                                            componentType: "CHART",
+                                            endColumn: 85,
+                                            endRow: 8,
+                                            id: "users-metric",
+                                            params: {
+                                                config: {
+                                                    variant: "metric",
+                                                    title: "Users",
+                                                    value: 15,
+                                                    width: 200,
+                                                    height: 150,
+                                                    sparklineData: [0, 5, 20, 100, 80]
+                                                }
+                                            }
+                                        },
+                                    }
+                                }
+                            } as any
+                        },
+                        {
+                            path: "/brands",
+                            public: false,
+                            config: RenderBrandsPage()
+                        },
                         {
                             path: "dashboard",
                             public: false,
