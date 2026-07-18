@@ -2,6 +2,7 @@ import { CustomFormFieldTypes } from "@cat.in.dev/cat-ponents-react"
 import { getConfigToRenderPageCommon } from "../../components/NavVarSession"
 import { BussinessUnitCrudConfig } from "../BussinessUnit";
 import get from 'lodash/get'
+import { CorporateItemsCrudConfig } from "../Corporate-Items";
 
 export const RenderBrandsPage = () => {
     return {
@@ -168,6 +169,53 @@ export const RenderBrandsPage = () => {
                                                             fields: [
                                                                 BussinessUnitCrudConfig()
                                                             ]
+                                                        },
+                                                        {
+                                                            prop: "items",
+                                                            size: 12,
+                                                            title: "Corporate Items (Productos/Servicios/Activos)",
+                                                            container: { 
+                                                                type: "modal", 
+                                                                config: {
+                                                                    buttonConfig: {
+                                                                        size: 4,
+                                                                        variant: "outlined",
+                                                                        title: "Items (Productos/Servicios/Activos)",
+                                                                        height: "large",
+                                                                        color: {
+                                                                            code: "#475569"
+                                                                        },
+                                                                        icon: {
+                                                                            position: "start",
+                                                                            name: "SmartToy"
+                                                                        }
+                                                                    },
+                                                                    routeConfig: (config: any) => {
+                                                                        const page = config["__$page"];
+                                                                        const brandAction = page["query"]["brand-action"]
+
+                                                                        let queryParamSet = "modal";
+
+                                                                        if (brandAction==="edit") queryParamSet = "add"
+                                                                        else if (brandAction==="view") queryParamSet = "view"
+                                                                        else queryParamSet = "create"
+                                                                    
+
+                                                                        return {    
+                                                                            replace: false,
+                                                                            queryParams: {
+                                                                                "brand-items": queryParamSet
+                                                                            },
+                                                                            autoOpen: {
+                                                                                for: "query", def: { "brand-items": [queryParamSet] }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            fields: [
+                                                                CorporateItemsCrudConfig()
+                                                            ]
                                                         }
                                                     ],
                                                     prop: 'brandsCrud'
@@ -250,8 +298,8 @@ export const RenderBrandsPage = () => {
                                                     variant: "contained",
                                                     height: "large",
                                                     color: {
-                                                        code: "#aff274",
-                                                        hoverCode: "#538527"
+                                                        code: "#4e946a",
+                                                        hoverCode: "#475569"
                                                     },
                                                     action: {
                                                         prev: () => {},

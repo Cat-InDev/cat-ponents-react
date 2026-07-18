@@ -107,6 +107,7 @@ export const BussinessUnitCrudConfig = () => ({
                                 ],
                                 multiple: false,
                                 notNull: false,
+                                editable: true,
                                 size: 4
                             },    
                         }
@@ -253,11 +254,11 @@ export const BussinessUnitCrudConfig = () => ({
         },
         saveButton: {
             size: 4,
-            variant: "outlined",
+            variant: "contained",
             height: "large",
             color: {
-                code: "#aff274",
-                hoverCode: "#538527"
+                code: "#4e946a",
+                hoverCode: "#475569"
             },
             action: {
                 prev: () => {},

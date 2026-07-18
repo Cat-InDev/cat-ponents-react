@@ -1,24 +1,24 @@
 import { CustomFormFieldTypes } from "@cat.in.dev/cat-ponents-react";
 import get from 'lodash/get';
 
-export const BranchesCrudConfig = () => ({
+export const CorporateItemsCrudConfig = () => ({
     type: 'crud' as CustomFormFieldTypes.Crud, 
     config: { 
         formConfig: {
-            id: "branches-crud",
-            title: 'Crear Sucursal',
-            prop: 'branchesCrud', 
+            id: "corporate-items-crud",
+            title: 'Crear Corporate Item',
+            prop: 'corporateItemsCrud', 
             components: [
                 { 
-                    prop: "branchesForm",
+                    prop: "corporateItemsForm",
                     fields: [
                         {
                             type: CustomFormFieldTypes.Data,
                             config: {
                                 disposition: "row",
                                 type: "text",
-                                label: "Nombre de la sucursal",
-                                prop: "branchName",
+                                label: "Nombre del item",
+                                prop: "itemName",
                                 placeholder: "Ej: Pan Quetzal 12av.",
                                 validator: [
                                     {
@@ -292,7 +292,7 @@ export const BranchesCrudConfig = () => ({
                 name: "Save"
             }
         },
-        prop: "branchs",
+        prop: "corporate-items",
         formData: {}
     }
 })
