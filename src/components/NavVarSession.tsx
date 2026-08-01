@@ -27,6 +27,18 @@ export const renderNavbarSession = (newProps: Record<string, any>) => {
                         { variant: 'button', icon: "Cases", config: { label: 'Negocios' } }, 
                         { variant: 'button', icon: "Store", config: { label: 'Sucursales' } }, 
                         { variant: 'button', icon: "Inventory", config: { label: 'Inventarios' } },           
+                        { variant: 'button', icon: "SmartToy", config: { label: 'Corporate Items', action: {
+                            callback: {
+                                action: {
+                                    name: "navigate",
+                                    taskConfig: {
+                                        eventName: "app-navigate-to",
+                                        eventParams: { to: "/items" }
+                                    },
+                                    taskName: "$dispatchEvent"
+                                }
+                            } 
+                        } } },           
                     ]
                 }
             }, 
@@ -55,6 +67,18 @@ export const renderNavbarSession = (newProps: Record<string, any>) => {
                     label: 'Catalo', 
                     itemList: [ 
                         { variant: 'button', icon: "CardMembership", config: { label: 'Suscripción y pagos' } }, 
+                        { variant: 'button', icon: "CreditScore", config: { label: 'Planes Catalo', action: {
+                            callback: {
+                                action: {
+                                    name: "navigate",
+                                    taskConfig: {
+                                        eventName: "app-navigate-to",
+                                        eventParams: { to: "/catalo-plans" }
+                                    },
+                                    taskName: "$dispatchEvent"
+                                }
+                            } 
+                        } } }, 
                     ] 
                 } 
             }, 
@@ -108,8 +132,12 @@ export const renderNavbarSession = (newProps: Record<string, any>) => {
     
 }
 
-export const getConfigToRenderPageCommon = async({ http: { Service }, env }: any) => {
-    const response = await Service.get(`${get(env, 'env.DefaultHost')}/corporate/assets`,
+export const getConfigToRenderPageCommon = async (config: any) => {
+
+    const Service = config["__$utils"]["http"]["service"]
+    const env = config["__$env"]["env"]
+
+    const response = await Service.get(`${get(env, 'DefaultHost')}/corporate/assets`,
     {
         requiresAuth: true,
         includeRefreshToken: true,

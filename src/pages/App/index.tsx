@@ -5,6 +5,9 @@ import { RenderLoginPage } from '../Login/Login';
 import { RenderSignupPage } from '../Signup/Signup';
 import { getConfigToRenderPageCommon } from '../../components/NavVarSession';
 import { RenderBrandsPage } from '../Brands';
+import { RenderCorporateItemsPage } from '../Corporate-Items';
+import { RenderPlanViewPage } from '../PlanViews';
+import { RenderPlanPurchasePage } from '../PlanPurchase';
 
 const Index = () => {
 
@@ -137,6 +140,21 @@ const Index = () => {
                             path: "/brands",
                             public: false,
                             config: RenderBrandsPage()
+                        },
+                        {
+                            path: "/items",
+                            public: false,
+                            config: RenderCorporateItemsPage()
+                        },
+                        {
+                            path: "/catalo-plans",
+                            public: false,
+                            config: RenderPlanViewPage()
+                        },
+                        {
+                            path: "/catalo-plans/:id",
+                            public: false,
+                            config: RenderPlanPurchasePage()
                         },
                         {
                             path: "dashboard",

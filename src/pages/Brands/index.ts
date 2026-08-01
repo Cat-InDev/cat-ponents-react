@@ -169,53 +169,6 @@ export const RenderBrandsPage = () => {
                                                             fields: [
                                                                 BussinessUnitCrudConfig()
                                                             ]
-                                                        },
-                                                        {
-                                                            prop: "items",
-                                                            size: 12,
-                                                            title: "Corporate Items (Productos/Servicios/Activos)",
-                                                            container: { 
-                                                                type: "modal", 
-                                                                config: {
-                                                                    buttonConfig: {
-                                                                        size: 4,
-                                                                        variant: "outlined",
-                                                                        title: "Items (Productos/Servicios/Activos)",
-                                                                        height: "large",
-                                                                        color: {
-                                                                            code: "#475569"
-                                                                        },
-                                                                        icon: {
-                                                                            position: "start",
-                                                                            name: "SmartToy"
-                                                                        }
-                                                                    },
-                                                                    routeConfig: (config: any) => {
-                                                                        const page = config["__$page"];
-                                                                        const brandAction = page["query"]["brand-action"]
-
-                                                                        let queryParamSet = "modal";
-
-                                                                        if (brandAction==="edit") queryParamSet = "add"
-                                                                        else if (brandAction==="view") queryParamSet = "view"
-                                                                        else queryParamSet = "create"
-                                                                    
-
-                                                                        return {    
-                                                                            replace: false,
-                                                                            queryParams: {
-                                                                                "brand-items": queryParamSet
-                                                                            },
-                                                                            autoOpen: {
-                                                                                for: "query", def: { "brand-items": [queryParamSet] }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            },
-                                                            fields: [
-                                                                CorporateItemsCrudConfig()
-                                                            ]
                                                         }
                                                     ],
                                                     prop: 'brandsCrud'

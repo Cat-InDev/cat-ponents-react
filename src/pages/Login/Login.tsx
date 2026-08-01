@@ -130,7 +130,7 @@ export const RenderLoginPage = () => {
                             }]
                         },     
                         formData: {},
-                        setFormData: (props: any) => console.log(props)
+                        setFormData: (props: any) => { console.log(props) }
                     },
                 }
             },
